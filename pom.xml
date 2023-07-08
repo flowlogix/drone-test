@@ -8,8 +8,8 @@
   <artifactId>drone-test</artifactId>
   <version>1.x-SNAPSHOT</version>
   <packaging>war</packaging>
-
   <name>drone-test</name>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
@@ -25,6 +25,11 @@
   <profiles>
     <profile>
       <id>graphene</id>
+      <activation>
+        <property>
+          <name>graphene</name>
+        </property>
+      </activation>
       <properties>
         <test.groups>none(),graphene</test.groups>
       </properties>
@@ -35,6 +40,24 @@
           <version>${arquillian.graphene.version}</version>
           <scope>test</scope>
           <type>pom</type>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>drone</id>
+      <activation>
+        <property>
+          <name>graphene</name>
+          <value>!true</value>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.arquillian.extension</groupId>
+          <artifactId>arquillian-drone-webdriver-depchain</artifactId>
+          <version>${arquillian.drone.version}</version>
+          <type>pom</type>
+          <scope>test</scope>
         </dependency>
       </dependencies>
     </profile>
@@ -60,14 +83,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
       <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-      <version>${arquillian.drone.version}</version>
-      <type>pom</type>
-      <scope>test</scope>
     </dependency>
 
     <!-- Arquillian test dependencies -->
