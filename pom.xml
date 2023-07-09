@@ -8,7 +8,7 @@
   <artifactId>drone-test</artifactId>
   <version>1.x-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>drone-test</name>
+  <name>Arquillian Graphene / Drone Test</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
