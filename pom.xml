@@ -18,7 +18,7 @@
     <arquillian.version>1.7.0.Final</arquillian.version>
     <arquillian.drone.version>2.5.6</arquillian.drone.version>
     <arquillian.graphene.version>2.5.4</arquillian.graphene.version>
-    <browser>chrome</browser>
+    <browser>chromeheadless</browser>
     <test.groups>none()</test.groups>
   </properties>
 
@@ -159,7 +159,9 @@
           <version>3.1.2</version>
           <configuration>
             <groups>${test.groups}</groups>
-            <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+            <argLine>--add-opens java.base/java.lang=ALL-UNNAMED
+            --add-opens java.base/java.io=ALL-UNNAMED</argLine>
             <systemPropertyVariables>
               <browser>${browser}</browser>
             </systemPropertyVariables>
