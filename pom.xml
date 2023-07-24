@@ -160,8 +160,7 @@
           <configuration>
             <groups>${test.groups}</groups>
             <redirectTestOutputToFile>false</redirectTestOutputToFile>
-            <argLine>--add-opens java.base/java.lang=ALL-UNNAMED
-            --add-opens java.base/java.io=ALL-UNNAMED</argLine>
+            <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
             <systemPropertyVariables>
               <browser>${browser}</browser>
             </systemPropertyVariables>
