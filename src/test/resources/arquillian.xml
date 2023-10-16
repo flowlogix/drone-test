@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://jboss.org/schema/arquillian https://jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <extension qualifier="webdriver">
         <property name="browser">${browser}</property>
-<!--        <property name="browserVersion">115</property>-->
+<!--        <property name="remoteReusable">true</property>-->
         <property name="firefoxArguments">-headless</property>
     </extension>
 </arquillian>
