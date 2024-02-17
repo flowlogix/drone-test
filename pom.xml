@@ -4,22 +4,21 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.flowlogix</groupId>
   <artifactId>drone-test</artifactId>
   <version>1.x-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Arquillian Graphene / Drone Test</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
+  <parent>
+    <groupId>com.flowlogix</groupId>
+    <artifactId>payara-pom</artifactId>
+    <version>2</version>
+  </parent>
 
-    <jakarta.ee.version>10.0.0</jakarta.ee.version>
-    <arquillian.version>1.7.0.Final</arquillian.version>
-    <arquillian.drone.version>2.5.6</arquillian.drone.version>
-    <arquillian.graphene.version>2.5.4</arquillian.graphene.version>
-    <browser>chromeheadless</browser>
+  <properties>
+    <checkstyle.skip>true</checkstyle.skip>
     <test.groups>none()</test.groups>
+    <test.redirect.to.file>false</test.redirect.to.file>
   </properties>
 
   <profiles>
@@ -95,7 +94,7 @@
     <dependency>
       <groupId>fish.payara.arquillian</groupId>
       <artifactId>arquillian-payara-server-remote</artifactId>
-      <version>3.0.alpha8</version>
+      <version>${arquillian.payara.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -111,7 +110,7 @@
       <dependency>
         <groupId>com.flowlogix</groupId>
         <artifactId>flowlogix-bom</artifactId>
-        <version>7.0.2</version>
+        <version>8.0.1</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -123,6 +122,13 @@
         <scope>test</scope>
       </dependency>
       <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-bom</artifactId>
+        <version>4.17.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
         <groupId>org.jboss.arquillian.extension</groupId>
         <artifactId>arquillian-drone-bom</artifactId>
         <version>${arquillian.drone.version}</version>
@@ -132,7 +138,7 @@
       <dependency>
         <groupId>org.jboss.shrinkwrap.resolver</groupId>
         <artifactId>shrinkwrap-resolver-bom</artifactId>
-        <version>3.2.1</version>
+        <version>3.3.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -140,39 +146,22 @@
   </dependencyManagement>
 
   <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
-    </plugins>
     <pluginManagement>
       <plugins>
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.4.0</version>
           <configuration>
             <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.1.2</version>
           <configuration>
             <groups>${test.groups}</groups>
-            <redirectTestOutputToFile>false</redirectTestOutputToFile>
             <systemPropertyVariables>
-              <browser>${browser}</browser>
+              <arquillian.launch>${arquillian.launch}</arquillian.launch>
             </systemPropertyVariables>
           </configuration>
-          <executions>
-            <execution>
-              <id>integration-test</id>
-              <goals>
-                <goal>integration-test</goal>
-                <goal>verify</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
       </plugins>
     </pluginManagement>

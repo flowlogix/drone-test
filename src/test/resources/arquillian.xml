@@ -5,8 +5,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://jboss.org/schema/arquillian https://jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <extension qualifier="webdriver">
-        <property name="browser">${browser}</property>
-<!--        <property name="remoteReusable">true</property>-->
+        <property name="browser">${webdriver.browser}</property>
         <property name="firefoxArguments">-headless</property>
+        <!--        <property name="remoteReusable">true</property>-->
     </extension>
+    <container qualifier="payara-docker">
+        <configuration>
+            <property name="adminHttps">true</property>
+            <property name="ignoreCertificates">true</property>
+            <property name="adminUser">admin</property>
+            <property name="adminPassword">admin</property>
+        </configuration>
+    </container>
 </arquillian>
