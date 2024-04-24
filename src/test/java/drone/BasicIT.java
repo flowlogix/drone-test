@@ -15,6 +15,7 @@
  */
 package drone;
 
+import com.flowlogix.testcontainers.PayaraServerLifecycleExtension;
 import org.eu.ingwar.tools.arquillian.extension.suite.annotations.ArquillianSuiteDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -32,11 +33,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.net.URL;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(PayaraServerLifecycleExtension.class)
 @ExtendWith(ArquillianExtension.class)
 @RunAsClient
 @ArquillianSuiteDeployment
