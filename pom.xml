@@ -12,14 +12,13 @@
   <parent>
     <groupId>com.flowlogix</groupId>
     <artifactId>payara-pom</artifactId>
-    <version>16</version>
+    <version>23</version>
   </parent>
 
   <properties>
     <test.redirect.to.file>false</test.redirect.to.file>
     <checkstyle.supressionsLocation>${basedir}/checkstyle/suppressions.xml</checkstyle.supressionsLocation>
     <arquillian.graphene.version>3.0.0-alpha.4</arquillian.graphene.version>
-    <arquillian.payara.version>3.0.alpha8</arquillian.payara.version>
   </properties>
 
   <dependencies>
@@ -32,7 +31,7 @@
     <dependency>
       <groupId>com.flowlogix.depchain</groupId>
       <artifactId>integration-test</artifactId>
-      <version>9</version>
+      <version>17</version>
       <scope>test</scope>
     </dependency>
 
@@ -46,7 +45,7 @@
     <dependency>
       <groupId>fish.payara.arquillian</groupId>
       <artifactId>arquillian-payara-server-remote</artifactId>
-      <version>${arquillian.payara.version}</version>
+      <version>3.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -56,4 +55,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-bom</artifactId>
+        <version>4.23.1</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>
